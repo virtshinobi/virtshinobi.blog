@@ -4,7 +4,7 @@
 # This block configures Packer itself, including required plugins
 # The vSphere plugin is needed to build VMs on vSphere infrastructure
 ###############################################################################
-123packer {
+packer {
   required_plugins {
     vsphere = {
       version = ">= v1.2.0"                    # Minimum required version of the vSphere plugin
