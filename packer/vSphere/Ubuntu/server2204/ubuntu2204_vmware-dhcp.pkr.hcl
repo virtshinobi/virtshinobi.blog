@@ -30,22 +30,22 @@ locals {
 # It includes all the settings for the VM that will be created
 ###############################################################################
 
-source "vsphere-iso" "windows2022" {
+source "vsphere-iso" "ubuntu-2404" {
   # vCenter connection settings
   vcenter_server      = "vcenter01.virtshinobi.local" # vCenter server address
   username            = "administrator@vsphere.local"
-  password            = "Password@123"             # vCenter password
-  datacenter          = "Datacenter-01"            # vCenter datacenter
-  datastore           = "Packer_DS01"              # Datastore for VM files
-  host                = "10.100.1.23"              # ESXi host
-  cluster             = "Cluster-01"               # Cluster name
-  folder              = "Templates/Packer"         # VM folder
-  insecure_connection = "true"                     # Skip SSL verification
+  password            = "Password@123"     # vCenter password
+  datacenter          = "Datacenter-01"    # vCenter datacenter
+  datastore           = "Packer_DS01"      # Datastore for VM files
+  host                = "10.100.1.23"      # ESXi host
+  cluster             = "Cluster-01"       # Cluster name
+  folder              = "Templates/Packer" # VM folder
+  insecure_connection = "true"             # Skip SSL verification
 
   # VM conversion settings
-  tools_upgrade_policy = true       # Upgrade VMware tools during customization
-  remove_cdrom         = true       # Remove CD-ROM after build
-  convert_to_template  = true       # Convert to template after build
+  tools_upgrade_policy = true # Upgrade VMware tools during customization
+  remove_cdrom         = true # Remove CD-ROM after build
+  convert_to_template  = true # Convert to template after build
 
   # VM hardware settings
   guest_os_type        = "ubuntu64Guest"                                               # Guest OS type
@@ -63,16 +63,16 @@ source "vsphere-iso" "windows2022" {
 
   # Disk configuration
   storage {
-    disk_size             = "32768"         # Disk size
-    disk_controller_index = 0               # Controller index
-    disk_thin_provisioned = "true"          # Thin provisioning
-    disk_eagerly_scrub    = "false"         # Eager zero scrubbing
+    disk_size             = "32768" # Disk size
+    disk_controller_index = 0       # Controller index
+    disk_thin_provisioned = "true"  # Thin provisioning
+    disk_eagerly_scrub    = "false" # Eager zero scrubbing
   }
 
   # Network configuration
   network_adapters {
-    network      = "VM Network"     # Network name
-    network_card = "vmxnet3"        # Network card type
+    network      = "VM Network" # Network name
+    network_card = "vmxnet3"    # Network card type
   }
 
   # Installation media
@@ -83,14 +83,14 @@ source "vsphere-iso" "windows2022" {
   # Cloud-init configuration via CD-ROM
   # This creates a secondary CD-ROM with cloud-init data
   cd_files = [
-    "./httpd/meta-data",     # Cloud-init metadata
-    "./httpd/user-data"      # Cloud-init user data
+    "./httpd-dhcp/meta-data",     # Cloud-init metadata
+    "./httpd-dhcp/user-data" # Cloud-init user data
   ]
-  cd_label = "cidata"        # Label for cloud-init CD-ROM
+  cd_label = "cidata" # Label for cloud-init CD-ROM
 
   # Boot configuration
-  boot_order = "disk,cdrom"  # Boot order
-  boot_wait  = "10s"         # Wait time before boot commands
+  boot_order = "disk,cdrom" # Boot order
+  boot_wait  = "10s"        # Wait time before boot commands
 
   # Boot commands for Ubuntu 24.04 automated installation
   # These commands trigger the automated installation process
