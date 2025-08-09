@@ -6,7 +6,7 @@
 # of Ubuntu 24.04 during the template creation process.
 ###############################################################################
 
-123autoinstall:
+autoinstall:
     # Specify the autoinstall version
     version: 1
     
