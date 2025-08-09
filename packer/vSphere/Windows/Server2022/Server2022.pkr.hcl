@@ -30,7 +30,7 @@ locals {
 # It includes all the settings for the VM that will be created
 ###############################################################################
 
-source "vsphere-iso" "ubuntu-2404" {
+source "vsphere-iso" "windows2022" {
   # vCenter connection settings
   vcenter_server      = "vcenter01.virtshinobi.local" # vCenter server address
   username            = "administrator@vsphere.local"
