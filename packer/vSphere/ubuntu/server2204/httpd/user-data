@@ -44,17 +44,22 @@ autoinstall:
     network:
         network:
             version: 2
+            renderer: networkd
             ethernets:
                 ens192:       # First network interface (VMware)
-                    dhcp4: true  # Use DHCP
-    
+                    dhcp4: no  # Use DHCP
+                    dhcp6: no
+                    addresses: [10.100.1.200/24]
+                    gateway4: 10.100.1.11
+                    nameservers:
+                        addresses: [10.100.1.21,8.8.8.8]    
     # User account configuration
     # Create an initial ubuntu user
     identity:
         hostname: ubuntu-server  # Default hostname
         username: ubuntu         # Default username
         # Password hash for 'ubuntu' (change this in production)
-        password: password@123 "
+        password: "$6$96xGFYDQw4YVbb7y$NuZsYNAS/wDrn9t.WF6SQGUEttsiM7Y7oicKa10VIPM8le61G3.uavFB.Odn4fv9g377wyt6q5wEiYV9BL6Iw/"
     
     # SSH server configuration
     ssh:

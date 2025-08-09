@@ -36,10 +36,10 @@ source "vsphere-iso" "ubuntu-2404" {
   username            = "administrator@vsphere.local"
   password            = "Password@123"                  # vCenter password
   datacenter          = "Datacenter-01"          # vCenter datacenter
-  datastore           = "iSCSI_DS02"           # Datastore for VM files
-  host                = "esxi01.virtshinobi.local"                # ESXi host
+  datastore           = "iSCSI_DS01"           # Datastore for VM files
+  host                = "esxi02.virtshinobi.local"                # ESXi host
   cluster             = "Cluster-01"             # Cluster name
-  folder              = "Templates"              # VM folder
+  folder              = "Templates/Packer"              # VM folder
   insecure_connection = "true" # Skip SSL verification
 
   # VM conversion settings
